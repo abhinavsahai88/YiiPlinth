@@ -84,11 +84,15 @@
 				$loApp->commandRunner->addCommands(YII_PATH.'/cli/commands');
 				$loEnv=@getenv('YII_CONSOLE_COMMANDS');
 				if(!empty($loEnv))
+				{
 					$loApp->commandRunner->addCommands($loEnv);
+				}
 			}
 			else
 			{
 				$loApp=Yii::createConsoleApplication(array('basePath'=>dirname($tcYII).'/cli'));
+				echo "HERE";
+				Utilities::printVar($toConfig);
 			}
 			$loApp->run();
 		}
@@ -119,7 +123,7 @@
 		{
 			if (is_array($taModule))
 			{
-				foreach ($taModule as $lcName => $laConfig) 
+				foreach ($taModule as $lcName => $laConfig)
 				{
 					$lcName = is_array($laConfig) ? $lcName : $laConfig;
 

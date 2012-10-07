@@ -28,18 +28,16 @@ abstract class PlinthModel extends CActiveRecord
 			{
 				$this->GUID = Utilities::getStringGUID();
 			}
-
 		}
 		else
 		{
 			$this->ModifiedDate = $this->Rowversion = Utilities::getTimestamp();
 			$this->ModifiedBy = $lcUser;
 		}
-
 		return parent::beforeValidate();
 	}
 
-	// TODO: Override this to make use of multiple connections/dbs.  
+	// TODO: Override this to make use of multiple connections/dbs.
 	public function getDbConnection()
 	{
 		return parent::getDbConnection();
