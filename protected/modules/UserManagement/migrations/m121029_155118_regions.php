@@ -8,7 +8,8 @@ class m121029_155118_regions extends CDbMigration
 
 	public function safeUp()
 	{
-		$this->createTable('{{Region}}', array(
+		//$this->dropTable('{{Region}}');
+		$this->createTable('{{region}}', array(
 			'RegionID'=>'pk',
 			'CountryID'=>'id',
 			'Name'=>'title',
@@ -20,7 +21,7 @@ class m121029_155118_regions extends CDbMigration
 			'RowVersion'=>'datetime',
 			));
 
-		$this->addForeignKey('FK_{{Region}}_CountryID', '{{Region}}', 'CountryID',
+		$this->addForeignKey('FK_{{region}}_CountryID', '{{region}}', 'CountryID',
 					'{{Country}}', 'CountryID', 'NO ACTION', 'NO ACTION');
 
 		$laRegions = $this->getRegionList();
@@ -31,7 +32,7 @@ class m121029_155118_regions extends CDbMigration
 			$lnCountryID = $this->getCountryID($laRegion['Country']);
 			echo $lnCountryID. ' -- ' . $laRegion['Country'];
 
-			$this->insert('{{Region}}', array(
+			$this->insert('{{region}}', array(
 				'CountryID'=>$lnCountryID,
 				'Name'=>$laRegion['Name'],
 				'Code'=>$laRegion['Code'],
@@ -67,7 +68,7 @@ class m121029_155118_regions extends CDbMigration
 
 	public function safeDown()
 	{
-		$this->dropTable('{{Region}}');
+		$this->dropTable('{{region}}');
 	}
 
 	private function getRegionList()
